@@ -47,7 +47,12 @@ def show
   matching_bottoms = Bottom.all
 
   @list_of_bottoms = matching_bottoms.order({ :created_at => :desc })
-
+  
+  if @list_of_tops.length > @list_of_bottoms.length 
+    max_count = @list_of_tops.length
+  else
+    @max_count = @list_of_bottoms.length
+  end
       
       render({ :template => "weather/show.html.erb" })
 end

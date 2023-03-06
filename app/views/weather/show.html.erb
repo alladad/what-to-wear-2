@@ -15,7 +15,6 @@ Outfit suggestions
   <div>
     <table border="1">
       <tr>
-    
         <th>
           Top
         </th>
@@ -26,55 +25,44 @@ Outfit suggestions
          <th>
          
         </th>
-
-        
-       <% @list_of_tops.each do |a_top| %>
-      <tr>
+      </tr>
+        <% @max_count.times do |suggest|%>
+        <tr>
         <td>
+        <% a_top= @list_of_tops.at(suggest)%>
         <% if @temp >= a_top.temperature_minimum && @temp <= a_top.temperature_maximum %>
           <img src="<%= a_top.image%>">
-          <%else%>
-          <%end%>
-     
+        <% else%>
+        <%end%>
         </td>
-      
-       <% @list_of_bottoms.each do |a_bottom| %>
-      <td>
-      
+        <td>
+        <% a_bottom= @list_of_bottoms.at(suggest)%>
         <% if @temp >= a_bottom.temperature_minimum && @temp <= a_bottom.temperature_maximum %>
           <img src="<%= a_bottom.image%>">
-          <%else%>
-          <%end%>
-      </td>
-
-      
+        <% else%>
+        <%end%>
+        </td>
         <td>
         <form action="/insert_outfit" method="post">
       <div>
         <input type="hidden" id="user_id_box" name="query_user_id" value= <%= session[:user_id]%>>
       </div>
       <div>
-    
-
-        <input type="hidden" id="top_id_box" name="query_top_id" value= <%= a_top.id %> >
+        <input type="hidden" id="top_id_box" name="query_top_id" value= <%= a_top.id%>>
       </div>
-
       <div>
-      
-
-        <input type="hidden" id="bottom_id_box" name="query_bottom_id" value=<%= a_bottom.id %>>
+        <input type="hidden" id="bottom_id_box" name="query_bottom_id" value= <%= a_bottom.id%>>
       </div>
-
+    
       <button>
         Save Outfit!
       </button>
     </form>
-    
-        </td>
-      </tr>
-      <% end %>
-      <% end %>
+    <%end%>
+    </td>
+    </tr>
     </table>
+    
   </div>
 </div>
 
