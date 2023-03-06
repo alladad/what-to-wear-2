@@ -23,29 +23,32 @@ Outfit suggestions
         <th>
          Bottom
         </th>
+         <th>
+         
+        </th>
 
         
-      <% @list_of_tops.each do |a_top| %>
+       <% @list_of_tops.each do |a_top| %>
       <tr>
         <td>
-        <%if a_top.temperature_min <= @temp <= a_top.temperature_max%>
+        <% if @temp >= a_top.temperature_minimum && @temp <= a_top.temperature_maximum %>
           <img src="<%= a_top.image%>">
           <%else%>
           <%end%>
-           <%#end%>
      
         </td>
-      <td>
+      
        <% @list_of_bottoms.each do |a_bottom| %>
-          <%if a_bottom.temperature_range == @temp%>
+      <td>
+      
+        <% if @temp >= a_bottom.temperature_minimum && @temp <= a_bottom.temperature_maximum %>
           <img src="<%= a_bottom.image%>">
           <%else%>
           <%end%>
-          <%#end%>
       </td>
 
+      
         <td>
-
         <form action="/insert_outfit" method="post">
       <div>
         <input type="hidden" id="user_id_box" name="query_user_id" value= <%= session[:user_id]%>>
