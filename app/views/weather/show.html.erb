@@ -1,0 +1,81 @@
+
+<h1>
+<%= params.fetch("user_location").capitalize%>
+</h1>
+<div>
+It is currently <%=@temp%> °F.
+</div>
+
+
+<hr>
+<h2>
+Outfit suggestions
+</h2>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+    
+        <th>
+          Top
+        </th>
+
+        <th>
+         Bottom
+        </th>
+
+        
+      <% @list_of_tops.each do |a_top| %>
+      <tr>
+        <td>
+        <%if a_top.temperature_min <= @temp <= a_top.temperature_max%>
+          <img src="<%= a_top.image%>">
+          <%else%>
+          <%end%>
+           <%#end%>
+     
+        </td>
+      <td>
+       <% @list_of_bottoms.each do |a_bottom| %>
+          <%if a_bottom.temperature_range == @temp%>
+          <img src="<%= a_bottom.image%>">
+          <%else%>
+          <%end%>
+          <%#end%>
+      </td>
+
+        <td>
+
+        <form action="/insert_outfit" method="post">
+      <div>
+        <input type="hidden" id="user_id_box" name="query_user_id" value= <%= session[:user_id]%>>
+      </div>
+      <div>
+    
+
+        <input type="hidden" id="top_id_box" name="query_top_id" value= <%= a_top.id %> >
+      </div>
+
+      <div>
+      
+
+        <input type="hidden" id="bottom_id_box" name="query_bottom_id" value=<%= a_bottom.id %>>
+      </div>
+
+      <button>
+        Save Outfit!
+      </button>
+    </form>
+    
+        </td>
+      </tr>
+      <% end %>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>
+
+    
+   

@@ -1,0 +1,142 @@
+<div>
+  <div>
+    <h1>
+      List of all tops
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new top
+    </h2>
+
+    <form action="/insert_top" method="post">
+      <div>
+        <label for="temperature_minimum_box">
+          Temperature minimum
+        </label>
+
+        <input type="text" id="temperature_minimum_box" name="query_temperature_minimum">
+      </div>
+
+      <div>
+        <label for="temperature_maximum_box">
+          Temperature maximum
+        </label>
+
+        <input type="text" id="temperature_maximum_box" name="query_temperature_maximum">
+      </div>
+
+      <div>
+        <label for="image_box">
+          Image
+        </label>
+
+        <input type="text" id="image_box" name="query_image">
+      </div>
+
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="hidden" id="user_id_box" name="query_user_id" value= <%= session[:user_id]%>>
+      </div>
+
+      <button>
+        Create top
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Temperature minimum
+        </th>
+
+        <th>
+          Temperature maximum
+        </th>
+
+        <th>
+          Image
+        </th>
+
+        <th>
+          User
+        </th>
+
+        <th>
+          Outfits count
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_tops.each do |a_top| %>
+      <tr>
+        <td>
+          <%= a_top.id %>
+        </td>
+
+        <td>
+          <%= a_top.temperature_minimum %>
+        </td>
+
+        <td>
+          <%= a_top.temperature_maximum %>
+        </td>
+
+        <td>
+          <%= a_top.image %>
+        </td>
+
+        <td>
+          <%= a_top.user_id %>
+        </td>
+
+        <td>
+          <%= a_top.outfits_count %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_top.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_top.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/tops/<%= a_top.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

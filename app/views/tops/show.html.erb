@@ -1,0 +1,123 @@
+<div>
+  <div>
+    <h1>
+      Top #<%= @the_top.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/tops">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_top/<%= @the_top.id %>">
+          Delete top
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Temperature minimum
+      </dt>
+      <dd>
+        <%= @the_top.temperature_minimum %>
+      </dd>
+
+      <dt>
+        Temperature maximum
+      </dt>
+      <dd>
+        <%= @the_top.temperature_maximum %>
+      </dd>
+
+      <dt>
+        Image
+      </dt>
+      <dd>
+        <%= @the_top.image %>
+      </dd>
+
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @the_top.user_id %>
+      </dd>
+
+      <dt>
+        Outfits count
+      </dt>
+      <dd>
+        <%= @the_top.outfits_count %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_top.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_top.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit top
+    </h2>
+
+    <form action="/modify_top/<%= @the_top.id %>"  method="post" >
+      <div>
+        <label for="temperature_minimum_box">
+          Temperature minimum
+        </label>
+
+        <input type="text" id="temperature_minimum_box" name="query_temperature_minimum" value="<%= @the_top.temperature_minimum %>">
+      </div>
+
+      <div>
+        <label for="temperature_maximum_box">
+          Temperature maximum
+        </label>
+
+        <input type="text" id="temperature_maximum_box" name="query_temperature_maximum" value="<%= @the_top.temperature_maximum %>">
+      </div>
+
+      <div>
+        <label for="image_box">
+          Image
+        </label>
+
+        <input type="text" id="image_box" name="query_image" value="<%= @the_top.image %>">
+      </div>
+
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_top.user_id %>">
+      </div>
+
+      <button>
+        Update top
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

@@ -1,0 +1,118 @@
+<div>
+  <div>
+    <h1>
+      List of all outfits
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new outfit
+    </h2>
+
+    <form action="/insert_outfit" method="post">
+      <div>
+        <label for="top_id_box">
+          Top
+        </label>
+
+        <input type="text" id="top_id_box" name="query_top_id">
+      </div>
+
+      <div>
+        <label for="bottom_id_box">
+          Bottom
+        </label>
+
+        <input type="text" id="bottom_id_box" name="query_bottom_id">
+      </div>
+
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id">
+      </div>
+
+      <button>
+        Create outfit
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Top
+        </th>
+
+        <th>
+          Bottom
+        </th>
+
+        <th>
+          User
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_outfits.each do |an_outfit| %>
+      <tr>
+        <td>
+          <%= an_outfit.id %>
+        </td>
+
+        <td>
+          <%= an_outfit.top_id %>
+        </td>
+
+        <td>
+          <%= an_outfit.bottom_id %>
+        </td>
+
+        <td>
+          <%= an_outfit.user_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(an_outfit.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(an_outfit.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/outfits/<%= an_outfit.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>
