@@ -12,6 +12,9 @@ It is currently <%=@temp%> °F.
 Outfit suggestions
 </h2>
 <div>
+<% if session.fetch(:user_id) == nil%>
+       Sign-In to see outfit suggestions!
+      <%else%>
   <div>
     <table border="1">
       <tr>
@@ -22,15 +25,18 @@ Outfit suggestions
         <th>
          Bottom
         </th>
+
          <th>
-         
+         Like this Outfit?
         </th>
+
       </tr>
         <% @max_count.times do |suggest|%>
         <tr>
-        <td>
+         <td>
         <% a_top= @list_of_tops.at(suggest)%>
         <% if @temp >= a_top.temperature_minimum && @temp <= a_top.temperature_maximum %>
+         
           <img src="<%= a_top.image%>">
         <% else%>
         <%end%>
@@ -42,7 +48,7 @@ Outfit suggestions
         <% else%>
         <%end%>
         </td>
-        <td>
+    <td>
         <form action="/insert_outfit" method="post">
       <div>
         <input type="hidden" id="user_id_box" name="query_user_id" value= <%= session[:user_id]%>>
@@ -65,7 +71,7 @@ Outfit suggestions
     
   </div>
 </div>
-
+<%end%>
 <hr>
 
     

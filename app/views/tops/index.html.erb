@@ -1,13 +1,15 @@
 <div>
   <div>
     <h1>
-      List of all tops
+      Your tops
     </h1>
   </div>
 </div>
 
 <hr>
-
+<% if session.fetch(:user_id) == nil%>
+       
+  <%else%>
 <div>
   <div>
     <h2>
@@ -131,5 +133,5 @@
     </table>
   </div>
 </div>
-
+<% end %>
 <hr>

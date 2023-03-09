@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      List of all outfits
+      Your saved outfits
     </h1>
   </div>
 </div>
@@ -10,6 +10,11 @@
 
 <div>
   <div>
+  <div>
+    <% if session.fetch(:user_id) == nil%>
+       
+      <%else%>
+     <div>
     <h2>
       Add a new outfit
     </h2>
@@ -44,6 +49,7 @@
       </button>
     </form>
   </div>
+  </div>
 </div>
 
 <hr>
@@ -63,9 +69,6 @@
           Bottom
         </th>
 
-        <th>
-          User
-        </th>
 
         <th>
           Created at
@@ -94,10 +97,6 @@
         </td>
 
         <td>
-          <%= an_outfit.user_id %>
-        </td>
-
-        <td>
           <%= time_ago_in_words(an_outfit.created_at) %> ago
         </td>
         <td>
@@ -114,5 +113,6 @@
     </table>
   </div>
 </div>
+<%end%>
 
 <hr>
